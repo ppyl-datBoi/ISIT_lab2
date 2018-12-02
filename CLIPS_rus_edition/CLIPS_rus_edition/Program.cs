@@ -20,10 +20,7 @@ namespace CLIPS_rus_edition
             Application.Run(new Form1());
 
 
-            // parser p = new parser();
-            // p.parse_factss();
-
-
+           
             Form1 f = new Form1();
             f.parse_factss();
             

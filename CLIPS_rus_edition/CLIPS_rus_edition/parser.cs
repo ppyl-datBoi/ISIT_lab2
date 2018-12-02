@@ -80,21 +80,8 @@ public void parse_facts(Label label, RichTextBox richtextbox) //загрузка
          
         }
 
-        void parse_factss() //мусор
-        {
-            const string docPath = @"C:\docLocation.docx";
-            Word.Application app = new Word.Application();
-            Word.Document doc = app.Documents.Open(docPath);
-
-            //Get all words
-            string allWords = doc.Content.Text;
-            doc.Close();
-            app.Quit();
-
-           
-           
-
-        }
+    
+        
         void parse_rules()
         {
 

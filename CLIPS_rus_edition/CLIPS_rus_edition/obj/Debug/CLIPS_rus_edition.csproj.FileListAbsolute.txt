@@ -10,3 +10,8 @@ F:\2018-19\StolbovAndIstomin\ISIT_lab2-master\ISIT_lab2-master\CLIPS_rus_edition
 F:\2018-19\StolbovAndIstomin\ISIT_lab2-master\ISIT_lab2-master\CLIPS_rus_edition\CLIPS_rus_edition\bin\Debug\CLIPS_rus_edition.pdb
 F:\2018-19\StolbovAndIstomin\ISIT_lab2-master\ISIT_lab2-master\CLIPS_rus_edition\CLIPS_rus_edition\obj\Debug\CLIPS_rus_edition.exe
 F:\2018-19\StolbovAndIstomin\ISIT_lab2-master\ISIT_lab2-master\CLIPS_rus_edition\CLIPS_rus_edition\obj\Debug\CLIPS_rus_edition.pdb
+C:\Users\DatBoi\Documents\GitHub\ISIT_lab2\CLIPS_rus_edition\CLIPS_rus_edition\bin\Debug\CLIPS_rus_edition.exe.config
+C:\Users\DatBoi\Documents\GitHub\ISIT_lab2\CLIPS_rus_edition\CLIPS_rus_edition\obj\Debug\Interop.LCC11.dll
+C:\Users\DatBoi\Documents\GitHub\ISIT_lab2\CLIPS_rus_edition\CLIPS_rus_edition\obj\Debug\CLIPS_rus_edition.csproj.ResolveComReference.cache
+C:\Users\DatBoi\Documents\GitHub\ISIT_lab2\CLIPS_rus_edition\CLIPS_rus_edition\obj\Debug\CLIPS_rus_edition.exe
+C:\Users\DatBoi\Documents\GitHub\ISIT_lab2\CLIPS_rus_edition\CLIPS_rus_edition\obj\Debug\CLIPS_rus_edition.pdb
