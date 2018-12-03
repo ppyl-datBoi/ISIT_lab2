@@ -15,3 +15,9 @@ C:\Users\DatBoi\Documents\GitHub\ISIT_lab2\CLIPS_rus_edition\CLIPS_rus_edition\o
 C:\Users\DatBoi\Documents\GitHub\ISIT_lab2\CLIPS_rus_edition\CLIPS_rus_edition\obj\Debug\CLIPS_rus_edition.csproj.ResolveComReference.cache
 C:\Users\DatBoi\Documents\GitHub\ISIT_lab2\CLIPS_rus_edition\CLIPS_rus_edition\obj\Debug\CLIPS_rus_edition.exe
 C:\Users\DatBoi\Documents\GitHub\ISIT_lab2\CLIPS_rus_edition\CLIPS_rus_edition\obj\Debug\CLIPS_rus_edition.pdb
+C:\Users\DatBoi\Documents\GitHub\ISIT_lab2\CLIPS_rus_edition\CLIPS_rus_edition\obj\Debug\CLIPS_rus_edition.csprojResolveAssemblyReference.cache
+C:\Users\DatBoi\Documents\GitHub\ISIT_lab2\CLIPS_rus_edition\CLIPS_rus_edition\obj\Debug\CLIPS_rus_edition.Form1.resources
+C:\Users\DatBoi\Documents\GitHub\ISIT_lab2\CLIPS_rus_edition\CLIPS_rus_edition\obj\Debug\CLIPS_rus_edition.Properties.Resources.resources
+C:\Users\DatBoi\Documents\GitHub\ISIT_lab2\CLIPS_rus_edition\CLIPS_rus_edition\obj\Debug\CLIPS_rus_edition.csproj.GenerateResource.Cache
+C:\Users\DatBoi\Documents\GitHub\ISIT_lab2\CLIPS_rus_edition\CLIPS_rus_edition\bin\Debug\CLIPS_rus_edition.exe
+C:\Users\DatBoi\Documents\GitHub\ISIT_lab2\CLIPS_rus_edition\CLIPS_rus_edition\bin\Debug\CLIPS_rus_edition.pdb

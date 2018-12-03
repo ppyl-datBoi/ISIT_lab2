@@ -6,36 +6,39 @@ using System.Threading.Tasks;
 
 namespace CLIPS_rus_edition
 {
-    public class WorkingMemory
+    public class WorkingMemory :IWorkingMemory
     {
-        List<string> numbers = new List<string>();
         public Dictionary<string, string> facts = new Dictionary<string, string>();
+        //public WorkingMemory(Dictionary<string, string> Facts)
+        //{
+        //    facts = Facts;
+        //}
+
+        
         
 
-        public void add_fact(string fact)
-        {
-            // numbers.Add(fact);
-            if (!facts.ContainsKey(fact))
-            {
-                facts.Add(fact, "none");
-            }
 
-            
+        public void add_fact(string fact, string none = "none")
+        {          
+            if (!facts.ContainsKey(fact))
+            {          
+                facts.Add(fact, none);
+            }           
         }
 
-        public static string get_facts()
+        public string get_facts()
         {
             string fact="";
             return fact;
         }
+
+        
     }
 
-    class IWorkingMemory
+    interface IWorkingMemory
     {
-        void add_fact()
-        {
-
-        }
+        void add_fact(string fact, string none);
+        string get_facts();
     }
 
 }
