@@ -9,21 +9,27 @@ using System.Windows.Forms;
 
 namespace CLIPS_rus_edition
 {
-    public class KnowledgeBase
+    public class KnowledgeBase : IKnowledgeBase
     {
-        List<KnowledgeBase.Rule> rules = new List<KnowledgeBase.Rule>();
-        List<KnowledgeBase.Question> question = new List<KnowledgeBase.Question>();
+        public List<KnowledgeBase.Rule> rules;
         WorkingMemory wm = new WorkingMemory();
+        public KnowledgeBase()
+        {
+            rules = new List<KnowledgeBase.Rule>();
+        }
+
+            
+        
         void add_rule(string name, Dictionary<string,string> preconditions, string[] insert)
         {
             KnowledgeBase.Rule rule = new KnowledgeBase.Rule(name, preconditions, insert);
             rules.Add(rule);
         }
 
-        void add_question(string name, Dictionary<string, string> preconditions, string question)
+        void add_question(string name, Dictionary<string, string> preconditions, string[] question)
         {
-            KnowledgeBase.Question q = new KnowledgeBase.Question(name, preconditions, question);
-           // question.Add(q); проблемс
+            KnowledgeBase.Question q = new KnowledgeBase.Question(name, preconditions, question);          
+            rules.Add(q);
         }
 
        public List<KnowledgeBase.Rule> get_rules()
@@ -99,7 +105,7 @@ namespace CLIPS_rus_edition
         }
 
 
-        void parse_rules()
+        public void parse_rules()
         {
             
         }
@@ -125,12 +131,12 @@ namespace CLIPS_rus_edition
 
         }
 
-        class Question
+        class Question : Rule
         {
             string Name;
             Dictionary<string, string> Preconditions = new Dictionary<string, string>();
-            string Questionn;
-            public Question(string name, Dictionary<string, string> preconditions, string question)
+            string[] Questionn;
+            public Question(string name, Dictionary<string, string> preconditions, string[] question) : base (name,preconditions,question)
             {
                 this.Name = name;
                 this.Preconditions = preconditions;
@@ -142,10 +148,9 @@ namespace CLIPS_rus_edition
 
             }
 
-            public string print_question()
-            {
-                string print = "";
-                return print;
+            public string[] print_question()
+            {           
+               return this.Questionn;
             }
         }
 
@@ -153,27 +158,12 @@ namespace CLIPS_rus_edition
     }
 
 
-    
 
-        
-
-
-    
-
-
-    
-
-    class IKnowledgeBase
+    interface IKnowledgeBase
     {
-        void parse_facts()
-        {
-
-        }
-
-        void parse_rules()
-        {
-
-        }
+        void parse_facts(Label label,RichTextBox richtextbox);
+        void parse_rules();
+        
     }
 
 
