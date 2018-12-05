@@ -18,7 +18,8 @@ namespace CLIPS_rus_edition
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new Form1());
-       
+            
         }
+       
     }
 }

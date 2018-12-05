@@ -8,30 +8,28 @@ namespace CLIPS_rus_edition
 {
     public class WorkingMemory :IWorkingMemory
     {
-        public Dictionary<string, string> fact_dict;
+       
+        
+        public static Dictionary<string, string> fact_dict = new Dictionary<string, string>();
+
 
         public WorkingMemory()
         {
-        }
-
-        public WorkingMemory(Dictionary<string, string> Facts)
-        {
             fact_dict = new Dictionary<string, string>();
         }
-
 
         public void add_fact(string fact, string none = "none")
         {          
            if (!fact_dict.ContainsKey(fact))
             {
-               fact_dict.Add(fact, none);
+               fact_dict.Add(fact, none);               
             }           
         }
 
        
-        public string get_facts()
-        {          
-            return fact_dict.ToString(); //вообще не точно
+        public Dictionary<string,string> get_facts() //получение фактов
+        {
+            return fact_dict; 
         }
 
         
@@ -40,7 +38,7 @@ namespace CLIPS_rus_edition
     interface IWorkingMemory
     {
         void add_fact(string fact, string none);
-        string get_facts();
+        Dictionary<string, string> get_facts();
         
        
     }

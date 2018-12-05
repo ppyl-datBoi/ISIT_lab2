@@ -69,10 +69,10 @@ public void parse_facts(Label label, RichTextBox richtextbox) //загрузка
                 //label1.Text = wm.facts["1"];
 
                 
-                foreach (KeyValuePair<String, String> s in wm.facts)
-                {                 
-                    richtextbox.Text = richtextbox.Text + s.Key + ": " +  s.Value + "\n";
-                }
+                //foreach (KeyValuePair<String, String> s in wm.fact_dict)
+                //{                 
+                //    richtextbox.Text = richtextbox.Text + s.Key + ": " +  s.Value + "\n";
+                //}
 
                 app.Quit();
             }
