@@ -10,15 +10,15 @@ namespace CLIPS_rus_edition
     {
        
         
-        public static Dictionary<string, string> fact_dict = new Dictionary<string, string>();
+        public static Dictionary<string, string> fact_dict = new Dictionary<string, string>(); //словарь фактов
 
 
         public WorkingMemory()
         {
-            fact_dict = new Dictionary<string, string>();
+          //  fact_dict = new Dictionary<string, string>();
         }
 
-        public void add_fact(string fact, string none = "none")
+        public void add_fact(string fact, string none = "none") //добавление фактов
         {          
            if (!fact_dict.ContainsKey(fact))
             {

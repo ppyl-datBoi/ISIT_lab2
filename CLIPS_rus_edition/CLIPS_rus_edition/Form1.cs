@@ -41,13 +41,13 @@ namespace CLIPS_rus_edition
 
         private void button3_Click(object sender, EventArgs e)
         {
-
+            ask_question_get_answer();
         }
 
         private void button4_Click(object sender, EventArgs e)
         {
             ask_question_get_answer();
-            
+
 
             //WorkingMemory wm = new WorkingMemory();
             //wm.fact_dict["интернет работает"] = "да";
@@ -62,8 +62,31 @@ namespace CLIPS_rus_edition
 
         void ask_question_get_answer()
         {
+            button3.Visible = false;
            string question = InferenceMachine.start(null);
             richTextBox2.Text = question;
+            button3.Visible = false;
+            if (!richTextBox2.Text.Contains("Так как"))
+            {
+                button4.Visible = true;
+                get_answer();
+
+                if (richTextBox2.Text.Contains("К сожалению"))
+                {
+                    button4.Visible = false;
+                    button3.Visible = true;
+                }
+            }
+            else
+            {
+                if (richTextBox2.Text.Contains("результат"))
+                {
+                    button4.Visible = false;
+                    button3.Visible = true;
+                }
+                else get_rule_worked();
+            }
+
         }
 
         void get_rule_worked()
@@ -79,7 +102,19 @@ namespace CLIPS_rus_edition
 
         private void Form1_Load(object sender, EventArgs e)
         {
-                       
+            KnowledgeBase kb = new KnowledgeBase();
+            kb.parse_facts();
+            kb.parse_rules();
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            KnowledgeBase kb = new KnowledgeBase();
+            kb.parse_facts();
+            kb.parse_rules();
+            richTextBox2.Text = "Добро пожаловать в диагностирующую систему";
+            button3.Visible = true;
+            button4.Visible = false;
         }
     }
 }

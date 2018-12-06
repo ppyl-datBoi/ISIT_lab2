@@ -10,12 +10,17 @@ namespace CLIPS_rus_edition
     {
         WorkingMemory WorkingMemory = new WorkingMemory();      
         KnowledgeBase KnowledgeBase = new KnowledgeBase();
+        KnowledgeBase.Rule item_on_work;
 
-    KnowledgeBase.Rule item_on_work;
+        public InferenceMachine()
+        {
+           // item_on_work = new KnowledgeBase.Rule();
+        }
+
         public int count_questions = 0 ;   
         public string answer = "";
 
-        public int count_question()
+        public int count_question() //подсчет вопросов
         {
             foreach (KnowledgeBase.Rule k in KnowledgeBase.rules)
             {
@@ -30,25 +35,24 @@ namespace CLIPS_rus_edition
             return result;
         }
 
-        public string check_facts(string main)
+        public string check_facts(string main) //проверка фактов
         {
-            Dictionary<string,string> facts = WorkingMemory.get_facts();
+           Dictionary<string,string> facts = WorkingMemory.get_facts();
             List<KnowledgeBase.Rule> rules = KnowledgeBase.get_rules();
             // facts.Add("Результат",""); //для примера
-            if (facts["результат"] == "" && count_questions > 0)
-            {
-                return interview(main, facts, rules);
-            }
-            return "kek";
-
+            int count_quest = count_question();
+            if (facts["результат"] == "none" && count_quest > 0)
+            { return interview(main, facts, rules); }           
+        return "Что тут не так";
         }
 
-        public string interview (string main, Dictionary<string, string> facts, List<KnowledgeBase.Rule>  rules )
+        public string interview (string main, Dictionary<string, string> facts, List<KnowledgeBase.Rule>  rules ) 
         {
             foreach(KnowledgeBase.Rule i in rules)
             {
                 if(i.is_used == false)
                 {
+                    i.Preconditions.Add("результат","non");
                     bool is_coincided = true;
                     foreach(string j in i.Preconditions.Keys)
                     {
@@ -65,10 +69,11 @@ namespace CLIPS_rus_edition
                         }
                     }
                 }
-                
-               
+
+                return item_on_work.question;
             }
-            return ("К сожалению мы не смогли решить вашу проблему");
+            return item_on_work.question;
+            //return ("К сожалению мы не смогли решить вашу проблему");
         }
 
         public void set_answer(string answer = "none")
