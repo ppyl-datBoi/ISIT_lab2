@@ -103,8 +103,9 @@ namespace CLIPS_rus_edition
         private void Form1_Load(object sender, EventArgs e)
         {
             KnowledgeBase kb = new KnowledgeBase();
-            kb.parse_facts();
             kb.parse_rules();
+            kb.parse_facts();
+          
         }
 
         private void button5_Click(object sender, EventArgs e)

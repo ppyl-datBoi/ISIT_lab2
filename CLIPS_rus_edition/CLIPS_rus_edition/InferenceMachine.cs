@@ -52,7 +52,7 @@ namespace CLIPS_rus_edition
             {
                 if(i.is_used == false)
                 {
-                    i.Preconditions.Add("результат","non");
+                  
                     bool is_coincided = true;
                     foreach(string j in i.Preconditions.Keys)
                     {
@@ -70,10 +70,10 @@ namespace CLIPS_rus_edition
                     }
                 }
 
-                return item_on_work.question;
+               
             }
-            return item_on_work.question;
-            //return ("К сожалению мы не смогли решить вашу проблему");
+           
+            return ("К сожалению мы не смогли решить вашу проблему");
         }
 
         public void set_answer(string answer = "none")

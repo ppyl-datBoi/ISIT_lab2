@@ -34,6 +34,7 @@ namespace CLIPS_rus_edition
         {
             KnowledgeBase.Question q = new KnowledgeBase.Question(name, preconditions, question);          
             rules.Add(q);
+            
         }
 
        public List<KnowledgeBase.Rule> get_rules() //получить правила
@@ -247,23 +248,14 @@ namespace CLIPS_rus_edition
             public Dictionary<string, string> Preconditions;
             public static Dictionary<string, string> Insert;
             public bool is_used = false;
-            // public string question = "keke";
-            public string question; 
-            
+            public string question;
+           // public Question quest;
             public Rule(string name, Dictionary<string, string> preconditions, Dictionary<string, string> insert)
             {
-               Preconditions = new Dictionary<string, string>();
+               Preconditions = new Dictionary<string, string>(preconditions);
                Insert = new Dictionary<string, string>();
-                this.Name = name;
-                //Preconditions = new Dictionary<string, string>();
-                this.Preconditions = preconditions;
-                //this.Insert = insert;
-               // Preconditions = preconditions;
-               // Insert = new Dictionary<string, string>();
-                //this.Preconditions = preconditions;
-               
+               this.Name = name;
                 question = "так как" + preconditions.Keys.ToString() + "следовательно:" + insert;
-
                 try
                 {
                  //   Insert.Add(insert); //нужно вставить insert
@@ -281,18 +273,15 @@ namespace CLIPS_rus_edition
 
         }
 
-        class Question : Rule
+        public class Question : Rule
         {
-            string Name;
-            Dictionary<string, string> Preconditions = new Dictionary<string, string>();
             Dictionary<string, string> Questionn;
            
-
             public Question(string name, Dictionary<string, string> preconditions, Dictionary<string, string> question) : base (name,preconditions,question)
             {
-                this.Name = name;
-                this.Preconditions = preconditions;
-                this.Questionn = question;
+                Preconditions = new Dictionary<string, string>(preconditions);
+                Questionn = new Dictionary<string, string>(question);
+                this.Name = name;            
             }
 
             void update_facts()
@@ -306,9 +295,7 @@ namespace CLIPS_rus_edition
             }
         }
 
-
     }
-
 
     interface IKnowledgeBase
     {
