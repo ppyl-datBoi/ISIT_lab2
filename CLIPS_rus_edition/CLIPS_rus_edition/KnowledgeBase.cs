@@ -9,301 +9,256 @@ using System.Windows.Forms;
 
 namespace CLIPS_rus_edition
 {
-    
+    /// <summary>
+    /// Интерфейс базы знаний
+    /// </summary>
+    public interface IKnowledgeBase
+    {
+        /// <summary>
+        /// список правил
+        /// </summary>
+        List<IRule> RulesList { get; set; }
+        /// <summary>
+        /// загрузка файла и заполнение БЗ
+        /// </summary>
+        /// <param name="path"></param>
+        void Load(string path);
+        /// <summary>
+        /// очистка БЗ
+        /// </summary>
+        void Clear();
+
+    }
+
+    /// <summary>
+    /// интерфейс правила
+    /// </summary>
+    public interface IRule
+    {
+        /// <summary>
+        /// Название правила
+        /// </summary>
+        string Name { get; set; }
+        /// <summary>
+        /// Предпосылки правила
+        /// </summary>
+        IPreconditions Preconditions { get; set; }
+        /// <summary>
+        /// Содержит статус использования правила, true если использовано, иначе false
+        /// </summary>
+        bool is_used { get; set; }
+        /// <summary>
+        /// Содержит вопрос для определения факта, если вопроса нет содержит значение null 
+        /// </summary>
+        string question { get; set; }
+        /// <summary>
+        /// Допустимые значения фактов при применении правила
+        /// </summary>
+        Dictionary<string, string> Facts { get; set; }
+    }
+
+    /// <summary>
+    /// Интерфейс предпосылок правила
+    /// </summary>
+    public interface IPreconditions
+    {
+        /// <summary>
+        /// Список левых переменных для выражения PrecLeft && PrectRight
+        /// </summary>
+        List<string> PrecLeft { get; set; }
+
+        /// <summary>
+        /// Список правых переменных для выражения PrecLeft && PrectRight
+        /// </summary>
+        List<string> PrecRight { get; set; }
+
+        /// <summary>
+        /// Список: факт = значение
+        /// </summary>
+        Dictionary<string, string> preconditions { get; set; }
+
+        /// <summary>
+        /// Добавление предпосылки
+        /// </summary>
+        /// <param name="name">название параметра</param>
+        /// <param name="value">значение параметра</param>
+        void Add(string name, string value);
+        /// <summary>
+        /// добавление условия предпосылки, в виде предпосылка1 AND предпосылка2
+        /// </summary>
+        /// <param name="namel">предпосылка1</param>
+        /// <param name="namer">предпосылка2</param>
+        void AddCondition(string namel, string namer);
+
+    }
+
+
+    /// <summary>
+    /// Представляет базу знаний ИС
+    /// </summary>
     public class KnowledgeBase : IKnowledgeBase
     {
-        
-        public static List<KnowledgeBase.Rule> rules; //список экземпляров класса rules
-        WorkingMemory wm;
-        public KnowledgeBase()
+        /// <summary>
+        /// список правил
+        /// </summary>
+        public List<IRule> RulesList { get; set; }
+        /// <summary>
+        /// загрузка файла и заполнение БЗ
+        /// </summary>
+        /// <param name="path"></param>
+        public void Load(string path)
         {
-            rules = new List<KnowledgeBase.Rule>();
-            wm = new WorkingMemory();
-        }
+            #region Создание объектов для начала работы с БЗ
+            RulesList = new List<IRule>();//создаем новый список правил
+            #endregion
+            #region запуск Word и открытие файла
+            Word.Application app = new Word.Application();//запускаем Ворд
+            Object fileName = path;//задаем путь к файлу
+            app.Documents.Open(ref fileName);//открываем файл
+            Word.Document doc = app.ActiveDocument;//запоминаем окрытый документ
+            #endregion
 
-            
-        
-        void add_rule(string name, Dictionary<string,string> preconditions, Dictionary<string, string> insert) //добавить правило
-        {
-            KnowledgeBase.Rule rule = new KnowledgeBase.Rule(name, preconditions, insert);
-            rules.Add(rule);
-            
-        }
-
-        void add_question(string name, Dictionary<string, string> preconditions, Dictionary<string, string> question) //добавить вопрос
-        {
-            KnowledgeBase.Question q = new KnowledgeBase.Question(name, preconditions, question);          
-            rules.Add(q);
-            
-        }
-
-       public List<KnowledgeBase.Rule> get_rules() //получить правила
-        {        
-            return rules;
-        }
-
-       // public void parse_facts(Label label, RichTextBox richtextbox) //загрузка файла docx
-            public void parse_facts() //загрузка файла docx
-        {
-            //OpenFileDialog dialog = new OpenFileDialog //на случай открытия любого файла
-            //{
-            //    Filter = "Файлы MS Word |*.docx",
-            //    Multiselect = false
-            //};
-
-            Word.Application app = new Word.Application();
-            string path = AppDomain.CurrentDomain.BaseDirectory + "example.docx";           
-            Object fileName = path;
-               // Object fileName = dialog.FileName;
-                app.Documents.Open(ref fileName);
-                Word.Document doc = app.ActiveDocument;
-                // Нумерация параграфов начинается с одного
-                string parText = " ";
-                for (int i = 1; i < doc.Paragraphs.Count; i++)
-                {
-                    if (doc.Paragraphs[i].Range.Text.Contains("IF"))
-                    {
-                        int startIndex = doc.Paragraphs[i].Range.Text.IndexOf('«') + 1;
-                        int finishIndrx = doc.Paragraphs[i].Range.Text.LastIndexOf("» =");
-                        int length = finishIndrx - startIndex;
-                        wm.add_fact(doc.Paragraphs[i].Range.Text.Substring(startIndex, length));                    
-                       
-                    }
-
-                    if (doc.Paragraphs[i].Range.Text.Contains("AND"))
-                    {
-                        int startIndex = doc.Paragraphs[i].Range.Text.IndexOf('«') + 1;
-                        int finishIndrx = doc.Paragraphs[i].Range.Text.LastIndexOf("» =");
-                        int length = finishIndrx - startIndex;
-                        wm.add_fact(doc.Paragraphs[i].Range.Text.Substring(startIndex, length));
-                    }
-
-                    if (doc.Paragraphs[i].Range.Text.Contains("OR"))
-                    {
-                        int startIndex = doc.Paragraphs[i].Range.Text.IndexOf('«') + 1;
-                        int finishIndrx = doc.Paragraphs[i].Range.Text.LastIndexOf("» =");
-                        int length = finishIndrx - startIndex;
-                        wm.add_fact(doc.Paragraphs[i].Range.Text.Substring(startIndex, length));
-                    }
-
-                    if (doc.Paragraphs[i].Range.Text.Contains("THEN"))
-                    {
-                        int startIndex = doc.Paragraphs[i].Range.Text.IndexOf('«') + 1;
-                        int finishIndrx = doc.Paragraphs[i].Range.Text.LastIndexOf("» =");
-                        int length = finishIndrx - startIndex;
-                        wm.add_fact(doc.Paragraphs[i].Range.Text.Substring(startIndex, length));
-                    }
-                  
-                    parText = parText + doc.Paragraphs[i].Range.Text;
-                    // wm.add_fact(parText);     
-                  //  f = wm.fact_dict;                     
-                }
-                //  label.Text = parText;
-
-
-
-                //foreach (KeyValuePair<String, String> s in wm.fact_dict)
-                //{
-                //    richtextbox.Text = richtextbox.Text + s.Key + ": " + s.Value + "\n";
-                //}
-
-                app.Quit();
-            
-
-
-        }
-
-
-        public void parse_rules() //импорт правил из документа
-        {
-            string nameR = "None";
-            string nameQ = "None";
-            Dictionary<string, string> preconditions = new Dictionary<string, string>();
-            Dictionary<string, string> insert = new Dictionary<string, string>();
-            string fact_key = "";
-            string insert_key = "";
-            Dictionary<string, string> question = new Dictionary<string, string>();
-            //string question = quest.Values;
-            bool flag_then = false;
-            bool flag_ask = false;
-
-
-            //OpenFileDialog dialog = new OpenFileDialog //на случай открытия любого файла
-            //{
-            //    Filter = "Файлы MS Word |*.docx",
-            //    Multiselect = false
-            //};
-            //if (dialog.ShowDialog() == DialogResult.OK)
-            //{
-                Word.Application app = new Word.Application();
-            string path = AppDomain.CurrentDomain.BaseDirectory + "example.docx";
-            Object fileName = path;
-               // Object fileName = dialog.FileName;
-                app.Documents.Open(ref fileName);
-                Word.Document doc = app.ActiveDocument;
-                // Нумерация параграфов начинается с одного
-                string parText = " ";
-                for (int i = 1; i < doc.Paragraphs.Count; i++)
-                {
-                    if (doc.Paragraphs[i].Range.Text.Contains("Правило"))
-                    {
-                        int startIndex = doc.Paragraphs[i].Range.Text.IndexOf('«') + 1;
-                        int finishIndrx = doc.Paragraphs[i].Range.Text.LastIndexOf("»");
-                        int length = finishIndrx - startIndex;
-                        nameR = (doc.Paragraphs[i].Range.Text.Substring(startIndex, length));
-                    }
-
-                if (doc.Paragraphs[i].Range.Text.Contains("Вопрос"))
-                {
-                    int startIndex = doc.Paragraphs[i].Range.Text.IndexOf('«') + 1;
-                    int finishIndrx = doc.Paragraphs[i].Range.Text.LastIndexOf("»");
-                    int length = finishIndrx - startIndex;
-                    nameQ = (doc.Paragraphs[i].Range.Text.Substring(startIndex, length));
-                }
-
-                if (doc.Paragraphs[i].Range.Text.Contains("IF"))
-                    {
-                        int startIndex = doc.Paragraphs[i].Range.Text.IndexOf('«') + 1;
-                        int finishIndrx = doc.Paragraphs[i].Range.Text.LastIndexOf("» =");
-                        int length = finishIndrx - startIndex;
-                        int startIndexV = doc.Paragraphs[i].Range.Text.IndexOf("= «") ;
-                        int finishIndrxV = doc.Paragraphs[i].Range.Text.LastIndexOf("»");
-                        int lengthV = finishIndrxV - startIndexV - 3;
-                        preconditions.Add(doc.Paragraphs[i].Range.Text.Substring(startIndex, length), doc.Paragraphs[i].Range.Text.Substring(startIndexV + 3, lengthV));
-                    }
-
-                if (doc.Paragraphs[i].Range.Text.Contains("AND"))
-                {
-                    int startIndex = doc.Paragraphs[i].Range.Text.IndexOf('«') + 1;
-                    int finishIndrx = doc.Paragraphs[i].Range.Text.LastIndexOf("» =");
-                    int length = finishIndrx - startIndex;
-                    int startIndexV = doc.Paragraphs[i].Range.Text.IndexOf("= «");
-                    int finishIndrxV = doc.Paragraphs[i].Range.Text.LastIndexOf("»");
-                    int lengthV = finishIndrxV - startIndexV - 3;
-                    preconditions.Add(doc.Paragraphs[i].Range.Text.Substring(startIndex, length), doc.Paragraphs[i].Range.Text.Substring(startIndexV + 3, lengthV));
-                }
-
-                if (doc.Paragraphs[i].Range.Text.Contains("OR"))
-                {
-                    int startIndex = doc.Paragraphs[i].Range.Text.IndexOf('«') + 1;
-                    int finishIndrx = doc.Paragraphs[i].Range.Text.LastIndexOf("» =");
-                    int length = finishIndrx - startIndex;
-                    int startIndexV = doc.Paragraphs[i].Range.Text.IndexOf("= «");
-                    int finishIndrxV = doc.Paragraphs[i].Range.Text.LastIndexOf("»");
-                    int lengthV = finishIndrxV - startIndexV - 3;
-                    preconditions.Add(doc.Paragraphs[i].Range.Text.Substring(startIndex, length) + "1", doc.Paragraphs[i].Range.Text.Substring(startIndexV + 3, lengthV));
-                }
-
-                if (doc.Paragraphs[i].Range.Text.Contains("THEN"))
-                    {
-                        int startIndex = doc.Paragraphs[i].Range.Text.IndexOf("«") +1;
-                        int finishIndrx = doc.Paragraphs[i].Range.Text.LastIndexOf("» =");
-                        int length = finishIndrx - startIndex;
-                        int startIndexV = doc.Paragraphs[i].Range.Text.IndexOf("= «") ;
-                        int finishIndrxV = doc.Paragraphs[i].Range.Text.LastIndexOf("»" );
-                        int lengthV = finishIndrxV - startIndexV -3;                  
-                        insert.Add(doc.Paragraphs[i].Range.Text.Substring(startIndex, length), doc.Paragraphs[i].Range.Text.Substring(startIndexV + 3, lengthV));
-
-                    if (doc.Paragraphs[i].Range.Text.Contains(";"))
-                    {
-                        add_rule(nameR, preconditions, insert);
-                        nameR = "";
-                        nameQ = "";
-                        preconditions.Clear();
-                        insert.Clear();
-                    }
-                }
-
-                if (doc.Paragraphs[i].Range.Text.Contains("ASK"))
-                {
-                    int startIndex = doc.Paragraphs[i].Range.Text.IndexOf("«") + 1;
-                    int finishIndrx = doc.Paragraphs[i].Range.Text.LastIndexOf("»");
-                    int length = finishIndrx - startIndex;                    
-                   question.Add(doc.Paragraphs[i].Range.Text.Substring(startIndex, length),"none");
-
-                    if (doc.Paragraphs[i].Range.Text.Contains(";"))
-                    {
-                        add_question(nameQ, preconditions, question);
-                        nameQ = "";
-                        nameR = "";
-                        preconditions.Clear();
-                        insert.Clear();
-                        question.Clear();
-                    }
-                }
-
-
-            }
-
-
-            app.Quit();
-
-  
-        }
-
-
-        public class Rule
-        {
-            public string Name;
-            public Dictionary<string, string> Preconditions;
-            public static Dictionary<string, string> Insert;
-            public bool is_used = false;
-            public string question;
-           // public Question quest;
-            public Rule(string name, Dictionary<string, string> preconditions, Dictionary<string, string> insert)
+            #region Заполнение базы знаний из файла .doc
+            for (int i = 1; i <doc.Paragraphs.Count; i++)
             {
-               Preconditions = new Dictionary<string, string>(preconditions);
-               Insert = new Dictionary<string, string>();
-               this.Name = name;
-                question = "так как" + preconditions.Keys.ToString() + "следовательно:" + insert;
-                try
-                {
-                 //   Insert.Add(insert); //нужно вставить insert
-                }
-                catch
-                {
-                 //   ничего не обновлять
-                }
-            }
+                IRule rule = new Rule();//создаем первое правило
+                rule.Preconditions = new Preconditions();//Обект предпосылок
+                rule.Preconditions.preconditions = new Dictionary<string, string>();//предпосылки для правила
 
-            public void update_facts(Dictionary<string, string> facts, string Answer = "none")
-            {
-             //   facts.Add(Insert); обноление факта
+                string constrains = doc.Paragraphs[i].Range.Text;
+
+                switch(constrains)
+                {
+                    case ("Правило"):
+                        {
+                            int startIndex = doc.Paragraphs[i].Range.Text.IndexOf('«') + 1;
+                            int finishIndrx = doc.Paragraphs[i].Range.Text.LastIndexOf("»");
+                            int length = finishIndrx - startIndex;
+                            rule.Name = (doc.Paragraphs[i].Range.Text.Substring(startIndex, length));
+                            break;
+                        }
+
+
+                    case ("IF"):
+                        {
+                            int startIndex = doc.Paragraphs[i].Range.Text.IndexOf('«') + 1;
+                            int finishIndrx = doc.Paragraphs[i].Range.Text.LastIndexOf("» =");
+                            int length = finishIndrx - startIndex;
+                            int startIndexV = doc.Paragraphs[i].Range.Text.IndexOf("= «");
+                            int finishIndrxV = doc.Paragraphs[i].Range.Text.LastIndexOf("»");
+                            int lengthV = finishIndrxV - startIndexV - 3;
+                            string name = doc.Paragraphs[i].Range.Text.Substring(startIndex, length);
+                            string value = doc.Paragraphs[i].Range.Text.Substring(startIndexV + 3, lengthV)
+                            rule.Preconditions.preconditions.Add(name, value);
+                            break;
+                        }
+
+                    case ("AND"):
+                        {
+                            while (doc.Paragraphs[i].Range.Text.Contains("AND"))
+                            {
+                                int startIndex = doc.Paragraphs[i].Range.Text.IndexOf('«') + 1;
+                                int finishIndrx = doc.Paragraphs[i].Range.Text.LastIndexOf("» =");
+                                int length = finishIndrx - startIndex;
+                                int startIndexV = doc.Paragraphs[i].Range.Text.IndexOf("= «");
+                                int finishIndrxV = doc.Paragraphs[i].Range.Text.LastIndexOf("»");
+                                int lengthV = finishIndrxV - startIndexV - 3;
+                                rule.Preconditions.preconditions.AddCondition(doc.Paragraphs[i].Range.Text.Substring(startIndex, length), doc.Paragraphs[i].Range.Text.Substring(startIndexV + 3, lengthV));
+                            }
+                            break;
+                        }
+
+                        //я
+                        //остановился
+                        //здесь
+                }
+                
+
+                if (rule.Name != null)//если у правила есть имя, записываем его
+                    RulesList.Add(rule);
             }
+            #endregion
+        }
+
+        private void DDD()
+        {
 
         }
 
-        public class Question : Rule
+        /// <summary>
+        /// очистка БЗ
+        /// </summary>
+        public void Clear()
         {
-            Dictionary<string, string> Questionn;
-           
-            public Question(string name, Dictionary<string, string> preconditions, Dictionary<string, string> question) : base (name,preconditions,question)
-            {
-                Preconditions = new Dictionary<string, string>(preconditions);
-                Questionn = new Dictionary<string, string>(question);
-                this.Name = name;            
-            }
 
-            void update_facts()
-            {
-
-            }
-
-            public Dictionary<string, string> print_question()
-            {           
-               return this.Questionn;
-            }
         }
 
     }
 
-    interface IKnowledgeBase
+    /// <summary>
+    /// Представляет продукционное правило состоящее из: название, предпосылки, вопросы, значения
+    /// </summary>
+    public class Rule : IRule
     {
-        void parse_facts();
-        //void parse_facts(Label label, RichTextBox richtextbox);
-        void parse_rules();
-        
+        /// <summary>
+        /// Название правила
+        /// </summary>
+        public string Name { get; set; }
+        /// <summary>
+        /// Предпосылки правила
+        /// </summary>
+        public IPreconditions Preconditions { get; set; }
+        /// <summary>
+        /// Содержит статус использования правила, true если использовано, иначе false
+        /// </summary>
+        public bool is_used { get; set; }
+        /// <summary>
+        /// Содержит вопрос для определения факта, если вопроса нет содержит значение null 
+        /// </summary>
+        public string question { get; set; }
+        /// <summary>
+        /// Допустимые значения фактов при применении правила
+        /// </summary>
+        public Dictionary<string, string> Facts { get; set; }
     }
 
+    public class Preconditions : IPreconditions
+    {
 
+        /// <summary>
+        /// Список левых переменных для выражения PrecLeft && PrectRight
+        /// </summary>
+        public List<string> PrecLeft { get; set; }
+
+        /// <summary>
+        /// Список правых переменных для выражения PrecLeft && PrectRight
+        /// </summary>
+        public List<string> PrecRight { get; set; }
+
+        /// <summary>
+        /// Список: факт = значение
+        /// </summary>
+        public Dictionary<string, string> preconditions { get; set; }
+
+        /// <summary>
+        /// Добавление предпосылки
+        /// </summary>
+        /// <param name="name">название параметра</param>
+        /// <param name="value">значение параметра</param>
+        public void Add(string name, string value)
+        {
+
+        }
+
+        /// <summary>
+        /// добавление условия предпосылки, в виде предпосылка1 AND предпосылка2
+        /// </summary>
+        /// <param name="namel">предпосылка1</param>
+        /// <param name="namer">предпосылка2</param>
+        public void AddCondition(string namel, string namer)
+        {
+
+        }
+
+    }
 }
