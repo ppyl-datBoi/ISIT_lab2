@@ -135,15 +135,9 @@ namespace CLIPS_rus_edition
             questions.Add(q);
         }
 
-        public List<Rule> get_rules() //получить правила
-        {
-            return rules;
-        }
+        public List<Rule> get_rules() => rules;
 
-        public List<Question> get_quest() //получить правила
-        {
-            return questions;
-        }
+        public List<Question> get_quest() => questions;
 
 
         public class Rule
@@ -179,16 +173,6 @@ namespace CLIPS_rus_edition
                 Preconditions = new Dictionary<string, string>(preconditions);
                 Questionn = question;
                 Name = name;
-            }
-
-            private void update_facts()
-            {
-            }
-
-
-            public string print_question()
-            {
-                return Questionn;
             }
         }
     }

@@ -106,8 +106,6 @@ namespace CLIPS_rus_edition
                 }
             }
 
-
-
             return ("К сожалению мы не смогли решить вашу проблему");
         }
 
@@ -123,9 +121,6 @@ namespace CLIPS_rus_edition
             Dictionary<string, string> facts = WorkingMemory.get_facts();
             facts[ins.Keys.First()] = ins.Values.First();
         }
-
-
-
 
     }
 }

@@ -17,6 +17,7 @@ namespace CLIPS_rus_edition
         {
         }
 
+
         public void add_fact(string fact, string none = "none") //добавление фактов
         {          
            if (!fact_dict.ContainsKey(fact))
