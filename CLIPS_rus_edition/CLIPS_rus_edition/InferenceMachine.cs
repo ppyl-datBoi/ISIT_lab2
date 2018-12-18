@@ -120,18 +120,8 @@ namespace CLIPS_rus_edition
 
         public void insert(Dictionary<string, string> ins)
         {
-            string Name = "";
-            string Value = "";
-            foreach (string name in ins.Keys)
-            {
-                Name = name;
-            }
-            foreach (string value in ins.Values)
-            {
-                Value = value;
-            }
             Dictionary<string, string> facts = WorkingMemory.get_facts();
-            facts[Name] = Value;
+            facts[ins.Keys.First()] = ins.Values.First();
         }
 
 

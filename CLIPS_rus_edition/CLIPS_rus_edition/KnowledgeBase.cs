@@ -32,36 +32,28 @@ namespace CLIPS_rus_edition
 
             for (var i = 1; i < doc.Paragraphs.Count; i++)
             {
-                if (doc.Paragraphs[i].Range.Text.Contains("IF"))
+                
+                if (doc.Paragraphs[i].Range.Text.Contains("IF")||doc.Paragraphs[i].Range.Text.Contains("THEN")|| doc.Paragraphs[i].Range.Text.Contains("AND"))
                 {
                     var startIndex = doc.Paragraphs[i].Range.Text.IndexOf('«') + 1;
                     var finishIndrx = doc.Paragraphs[i].Range.Text.LastIndexOf("» =");
                     var length = finishIndrx - startIndex;
                     wm.add_fact(doc.Paragraphs[i].Range.Text.Substring(startIndex, length));
+                    
                 }
 
-                if (doc.Paragraphs[i].Range.Text.Contains("AND"))
+
+                if (doc.Paragraphs[i].Range.Text.Contains("AND") || doc.Paragraphs[i].Range.Text.Contains("IF"))
                 {
                     var startIndex = doc.Paragraphs[i].Range.Text.IndexOf('«') + 1;
                     var finishIndrx = doc.Paragraphs[i].Range.Text.LastIndexOf("» =");
                     var length = finishIndrx - startIndex;
-                    wm.add_fact(doc.Paragraphs[i].Range.Text.Substring(startIndex, length));
-                }
-
-                if (doc.Paragraphs[i].Range.Text.Contains("OR"))
-                {
-                    var startIndex = doc.Paragraphs[i].Range.Text.IndexOf('«') + 1;
-                    var finishIndrx = doc.Paragraphs[i].Range.Text.LastIndexOf("» =");
-                    var length = finishIndrx - startIndex;
-                    wm.add_fact(doc.Paragraphs[i].Range.Text.Substring(startIndex, length) + "1");
-                }
-
-                if (doc.Paragraphs[i].Range.Text.Contains("THEN"))
-                {
-                    var startIndex = doc.Paragraphs[i].Range.Text.IndexOf('«') + 1;
-                    var finishIndrx = doc.Paragraphs[i].Range.Text.LastIndexOf("» =");
-                    var length = finishIndrx - startIndex;
-                    wm.add_fact(doc.Paragraphs[i].Range.Text.Substring(startIndex, length));
+                    var startIndexV = doc.Paragraphs[i].Range.Text.IndexOf("= «");
+                    var finishIndrxV = doc.Paragraphs[i].Range.Text.LastIndexOf("»");
+                    var lengthV = finishIndrxV - startIndexV - 3;
+                    preconditions.Add(doc.Paragraphs[i].Range.Text.Substring(startIndex, length),
+                        doc.Paragraphs[i].Range.Text.Substring(startIndexV + 3, lengthV));
+                    continue;
                 }
 
                 if (doc.Paragraphs[i].Range.Text.Contains("Правило"))
@@ -70,6 +62,7 @@ namespace CLIPS_rus_edition
                     var finishIndrx = doc.Paragraphs[i].Range.Text.LastIndexOf("»");
                     var length = finishIndrx - startIndex;
                     nameR = doc.Paragraphs[i].Range.Text.Substring(startIndex, length);
+                    continue;
                 }
 
                 if (doc.Paragraphs[i].Range.Text.Contains("Вопрос"))
@@ -78,44 +71,10 @@ namespace CLIPS_rus_edition
                     var finishIndrx = doc.Paragraphs[i].Range.Text.LastIndexOf("»");
                     var length = finishIndrx - startIndex;
                     nameQ = doc.Paragraphs[i].Range.Text.Substring(startIndex, length);
+                    continue;
                 }
-
-                if (doc.Paragraphs[i].Range.Text.Contains("IF"))
-                {
-                    var startIndex = doc.Paragraphs[i].Range.Text.IndexOf('«') + 1;
-                    var finishIndrx = doc.Paragraphs[i].Range.Text.LastIndexOf("» =");
-                    var length = finishIndrx - startIndex;
-                    var startIndexV = doc.Paragraphs[i].Range.Text.IndexOf("= «");
-                    var finishIndrxV = doc.Paragraphs[i].Range.Text.LastIndexOf("»");
-                    var lengthV = finishIndrxV - startIndexV - 3;
-                    preconditions.Add(doc.Paragraphs[i].Range.Text.Substring(startIndex, length),
-                        doc.Paragraphs[i].Range.Text.Substring(startIndexV + 3, lengthV));
-                }
-
-                if (doc.Paragraphs[i].Range.Text.Contains("AND"))
-                {
-                    var startIndex = doc.Paragraphs[i].Range.Text.IndexOf('«') + 1;
-                    var finishIndrx = doc.Paragraphs[i].Range.Text.LastIndexOf("» =");
-                    var length = finishIndrx - startIndex;
-                    var startIndexV = doc.Paragraphs[i].Range.Text.IndexOf("= «");
-                    var finishIndrxV = doc.Paragraphs[i].Range.Text.LastIndexOf("»");
-                    var lengthV = finishIndrxV - startIndexV - 3;
-                    preconditions.Add(doc.Paragraphs[i].Range.Text.Substring(startIndex, length),
-                        doc.Paragraphs[i].Range.Text.Substring(startIndexV + 3, lengthV));
-                }
-
-                if (doc.Paragraphs[i].Range.Text.Contains("OR"))
-                {
-                    var startIndex = doc.Paragraphs[i].Range.Text.IndexOf('«') + 1;
-                    var finishIndrx = doc.Paragraphs[i].Range.Text.LastIndexOf("» =");
-                    var length = finishIndrx - startIndex;
-                    var startIndexV = doc.Paragraphs[i].Range.Text.IndexOf("= «");
-                    var finishIndrxV = doc.Paragraphs[i].Range.Text.LastIndexOf("»");
-                    var lengthV = finishIndrxV - startIndexV - 3;
-                    preconditions.Add(doc.Paragraphs[i].Range.Text.Substring(startIndex, length) + "1",
-                        doc.Paragraphs[i].Range.Text.Substring(startIndexV + 3, lengthV));
-                }
-
+                
+                
                 if (doc.Paragraphs[i].Range.Text.Contains("THEN"))
                 {
                     var startIndex = doc.Paragraphs[i].Range.Text.IndexOf("«") + 1;
@@ -135,6 +94,7 @@ namespace CLIPS_rus_edition
                         preconditions.Clear();
                         insert.Clear();
                     }
+                    continue;
                 }
 
                 if (doc.Paragraphs[i].Range.Text.Contains("ASK"))

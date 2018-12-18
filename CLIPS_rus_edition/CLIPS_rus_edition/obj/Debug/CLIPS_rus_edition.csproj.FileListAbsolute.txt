@@ -45,3 +45,15 @@ C:\Users\Admin\Desktop\Истомин\ISIT_lab2\CLIPS_rus_edition\CLIPS_rus_edit
 C:\Users\Admin\Desktop\Истомин\ISIT_lab2\CLIPS_rus_edition\CLIPS_rus_edition\bin\Debug\CLIPS_rus_edition.exe.config
 C:\Users\Admin\Desktop\Истомин\ISIT_lab2\CLIPS_rus_edition\CLIPS_rus_edition\bin\Debug\CLIPS_rus_edition.exe
 C:\Users\Admin\Desktop\Истомин\ISIT_lab2\CLIPS_rus_edition\CLIPS_rus_edition\bin\Debug\CLIPS_rus_edition.pdb
+C:\Users\Evsei\Desktop\istomin\ISIT_lab2\CLIPS_rus_edition\CLIPS_rus_edition\bin\Debug\CLIPS_rus_edition.exe.config
+C:\Users\Evsei\Desktop\istomin\ISIT_lab2\CLIPS_rus_edition\CLIPS_rus_edition\bin\Debug\CLIPS_rus_edition.exe
+C:\Users\Evsei\Desktop\istomin\ISIT_lab2\CLIPS_rus_edition\CLIPS_rus_edition\bin\Debug\CLIPS_rus_edition.pdb
+C:\Users\Evsei\Desktop\istomin\ISIT_lab2\CLIPS_rus_edition\CLIPS_rus_edition\obj\Debug\CLIPS_rus_edition.csprojAssemblyReference.cache
+C:\Users\Evsei\Desktop\istomin\ISIT_lab2\CLIPS_rus_edition\CLIPS_rus_edition\obj\Debug\Interop.LCC11.dll
+C:\Users\Evsei\Desktop\istomin\ISIT_lab2\CLIPS_rus_edition\CLIPS_rus_edition\obj\Debug\CLIPS_rus_edition.csproj.ResolveComReference.cache
+C:\Users\Evsei\Desktop\istomin\ISIT_lab2\CLIPS_rus_edition\CLIPS_rus_edition\obj\Debug\CLIPS_rus_edition.Form1.resources
+C:\Users\Evsei\Desktop\istomin\ISIT_lab2\CLIPS_rus_edition\CLIPS_rus_edition\obj\Debug\CLIPS_rus_edition.Properties.Resources.resources
+C:\Users\Evsei\Desktop\istomin\ISIT_lab2\CLIPS_rus_edition\CLIPS_rus_edition\obj\Debug\CLIPS_rus_edition.csproj.GenerateResource.cache
+C:\Users\Evsei\Desktop\istomin\ISIT_lab2\CLIPS_rus_edition\CLIPS_rus_edition\obj\Debug\CLIPS_rus_edition.csproj.CoreCompileInputs.cache
+C:\Users\Evsei\Desktop\istomin\ISIT_lab2\CLIPS_rus_edition\CLIPS_rus_edition\obj\Debug\CLIPS_rus_edition.exe
+C:\Users\Evsei\Desktop\istomin\ISIT_lab2\CLIPS_rus_edition\CLIPS_rus_edition\obj\Debug\CLIPS_rus_edition.pdb
