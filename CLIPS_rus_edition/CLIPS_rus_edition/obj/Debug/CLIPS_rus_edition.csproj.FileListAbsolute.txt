@@ -21,3 +21,27 @@ C:\Users\DatBoi\Documents\GitHub\ISIT_lab2\CLIPS_rus_edition\CLIPS_rus_edition\o
 C:\Users\DatBoi\Documents\GitHub\ISIT_lab2\CLIPS_rus_edition\CLIPS_rus_edition\obj\Debug\CLIPS_rus_edition.csproj.GenerateResource.Cache
 C:\Users\DatBoi\Documents\GitHub\ISIT_lab2\CLIPS_rus_edition\CLIPS_rus_edition\bin\Debug\CLIPS_rus_edition.exe
 C:\Users\DatBoi\Documents\GitHub\ISIT_lab2\CLIPS_rus_edition\CLIPS_rus_edition\bin\Debug\CLIPS_rus_edition.pdb
+C:\Users\Admin\Desktop\Истомин\ISIT_lab2\CLIPS_rus_edition (Alpha version)\CLIPS_rus_edition\CLIPS_rus_edition\obj\Debug\CLIPS_rus_edition.csprojAssemblyReference.cache
+C:\Users\Admin\Desktop\Истомин\ISIT_lab2\CLIPS_rus_edition (Alpha version)\CLIPS_rus_edition\CLIPS_rus_edition\obj\Debug\Interop.LCC11.dll
+C:\Users\Admin\Desktop\Истомин\ISIT_lab2\CLIPS_rus_edition (Alpha version)\CLIPS_rus_edition\CLIPS_rus_edition\obj\Debug\CLIPS_rus_edition.csproj.ResolveComReference.cache
+C:\Users\Admin\Desktop\Истомин\ISIT_lab2\CLIPS_rus_edition (Alpha version)\CLIPS_rus_edition\CLIPS_rus_edition\obj\Debug\CLIPS_rus_edition.Form1.resources
+C:\Users\Admin\Desktop\Истомин\ISIT_lab2\CLIPS_rus_edition (Alpha version)\CLIPS_rus_edition\CLIPS_rus_edition\obj\Debug\CLIPS_rus_edition.Properties.Resources.resources
+C:\Users\Admin\Desktop\Истомин\ISIT_lab2\CLIPS_rus_edition (Alpha version)\CLIPS_rus_edition\CLIPS_rus_edition\obj\Debug\CLIPS_rus_edition.csproj.GenerateResource.cache
+C:\Users\Admin\Desktop\Истомин\ISIT_lab2\CLIPS_rus_edition (Alpha version)\CLIPS_rus_edition\CLIPS_rus_edition\obj\Debug\CLIPS_rus_edition.csproj.CoreCompileInputs.cache
+C:\Users\Admin\Desktop\Истомин\ISIT_lab2\CLIPS_rus_edition (Alpha version)\CLIPS_rus_edition\CLIPS_rus_edition\obj\Debug\CLIPS_rus_edition.exe
+C:\Users\Admin\Desktop\Истомин\ISIT_lab2\CLIPS_rus_edition (Alpha version)\CLIPS_rus_edition\CLIPS_rus_edition\obj\Debug\CLIPS_rus_edition.pdb
+C:\Users\Admin\Desktop\Истомин\ISIT_lab2\CLIPS_rus_edition (Alpha version)\CLIPS_rus_edition\CLIPS_rus_edition\bin\Debug\CLIPS_rus_edition.exe.config
+C:\Users\Admin\Desktop\Истомин\ISIT_lab2\CLIPS_rus_edition (Alpha version)\CLIPS_rus_edition\CLIPS_rus_edition\bin\Debug\CLIPS_rus_edition.exe
+C:\Users\Admin\Desktop\Истомин\ISIT_lab2\CLIPS_rus_edition (Alpha version)\CLIPS_rus_edition\CLIPS_rus_edition\bin\Debug\CLIPS_rus_edition.pdb
+C:\Users\Admin\Desktop\Истомин\ISIT_lab2\CLIPS_rus_edition\CLIPS_rus_edition\obj\Debug\CLIPS_rus_edition.csprojAssemblyReference.cache
+C:\Users\Admin\Desktop\Истомин\ISIT_lab2\CLIPS_rus_edition\CLIPS_rus_edition\obj\Debug\Interop.LCC11.dll
+C:\Users\Admin\Desktop\Истомин\ISIT_lab2\CLIPS_rus_edition\CLIPS_rus_edition\obj\Debug\CLIPS_rus_edition.csproj.ResolveComReference.cache
+C:\Users\Admin\Desktop\Истомин\ISIT_lab2\CLIPS_rus_edition\CLIPS_rus_edition\obj\Debug\CLIPS_rus_edition.Form1.resources
+C:\Users\Admin\Desktop\Истомин\ISIT_lab2\CLIPS_rus_edition\CLIPS_rus_edition\obj\Debug\CLIPS_rus_edition.Properties.Resources.resources
+C:\Users\Admin\Desktop\Истомин\ISIT_lab2\CLIPS_rus_edition\CLIPS_rus_edition\obj\Debug\CLIPS_rus_edition.csproj.GenerateResource.cache
+C:\Users\Admin\Desktop\Истомин\ISIT_lab2\CLIPS_rus_edition\CLIPS_rus_edition\obj\Debug\CLIPS_rus_edition.csproj.CoreCompileInputs.cache
+C:\Users\Admin\Desktop\Истомин\ISIT_lab2\CLIPS_rus_edition\CLIPS_rus_edition\obj\Debug\CLIPS_rus_edition.exe
+C:\Users\Admin\Desktop\Истомин\ISIT_lab2\CLIPS_rus_edition\CLIPS_rus_edition\obj\Debug\CLIPS_rus_edition.pdb
+C:\Users\Admin\Desktop\Истомин\ISIT_lab2\CLIPS_rus_edition\CLIPS_rus_edition\bin\Debug\CLIPS_rus_edition.exe.config
+C:\Users\Admin\Desktop\Истомин\ISIT_lab2\CLIPS_rus_edition\CLIPS_rus_edition\bin\Debug\CLIPS_rus_edition.exe
+C:\Users\Admin\Desktop\Истомин\ISIT_lab2\CLIPS_rus_edition\CLIPS_rus_edition\bin\Debug\CLIPS_rus_edition.pdb

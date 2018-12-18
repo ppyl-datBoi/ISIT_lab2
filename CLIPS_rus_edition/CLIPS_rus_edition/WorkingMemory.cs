@@ -15,7 +15,6 @@ namespace CLIPS_rus_edition
 
         public WorkingMemory()
         {
-          //  fact_dict = new Dictionary<string, string>();
         }
 
         public void add_fact(string fact, string none = "none") //добавление фактов
@@ -26,6 +25,10 @@ namespace CLIPS_rus_edition
             }           
         }
 
+        public void clear_facts ()
+        {
+            fact_dict.Clear();
+        }
        
         public Dictionary<string,string> get_facts() //получение фактов
         {
